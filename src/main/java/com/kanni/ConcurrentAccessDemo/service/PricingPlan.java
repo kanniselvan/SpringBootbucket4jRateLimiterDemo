@@ -13,7 +13,7 @@ public enum  PricingPlan {
     },
     BASIC {
         public   Bandwidth getLimit() {
-            return Bandwidth.classic(15, Refill.intervally(15, Duration.ofHours(1)));
+            return Bandwidth.classic(25, Refill.intervally(25, Duration.ofMinutes(1)));
         }
     },
     PROFESSIONAL {

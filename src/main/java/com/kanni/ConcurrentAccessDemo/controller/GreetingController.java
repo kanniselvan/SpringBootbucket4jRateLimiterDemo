@@ -25,6 +25,11 @@ public class GreetingController {
         return ResponseEntity.ok().body("Hello World: " + name);
     }
 
+    @GetMapping("/hello")
+    public ResponseEntity hello(@RequestParam(value = "name", defaultValue = "World") String name)  {
+        return ResponseEntity.ok().body("Hello World: " + name);
+    }
+
     @GetMapping("/test")
     public List<String> test() throws Exception {
         Instant start = Instant.now();
