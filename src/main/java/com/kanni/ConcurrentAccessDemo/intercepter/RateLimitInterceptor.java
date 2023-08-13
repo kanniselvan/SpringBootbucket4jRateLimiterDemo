@@ -24,6 +24,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         String apiKey = request.getHeader("X-api-key");
         if (apiKey == null || apiKey.isEmpty()) {
             response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: X-api-key");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
             return false;
         }
 
@@ -38,6 +39,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
             response.addHeader("X-Rate-Limit-Retry-After-Seconds", String.valueOf(waitForRefill));
             response.sendError(HttpStatus.TOO_MANY_REQUESTS.value(),
                     "You have exhausted your API Request Quota");
+            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
             return false;
         }
     }
